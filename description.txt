@@ -1,0 +1,26 @@
+📝 Task: Build a Stylish Calculator with HTML, CSS, and JavaScript
+🎯 Objective:
+Create a fully functional calculator that can perform basic arithmetic operations (+, −, ×, ÷) with a modern and responsive design.
+📌 Requirements:
+1. HTML
+Create a calculator container.
+Add a display section to show input and results.
+Add buttons for numbers (0–9), operators (+, −, ×, ÷), decimal point, clear (C), clear entry (CE), and equals 😊).
+2. CSS
+Style the calculator with a gradient background and modern look.
+Use flexbox or grid for button layout.
+Apply hover and active effects for better user experience.
+Make the design responsive for mobile screens.
+3. JavaScript
+Implement functions for:
+Adding numbers to the display.
+Adding a decimal point.
+Adding operators.
+Clearing all (C) and clearing entry (CE).
+Calculating results with =.
+Handling divide-by-zero errors (show “Error”).
+Add keyboard support (numbers, operators, Enter, Escape, Backspace).
+4. Extra Challenge (optional)
+Handle decimal precision properly.
+Prevent invalid inputs (e.g., multiple operators in a row).
+Add smooth animations when pressing buttons.
