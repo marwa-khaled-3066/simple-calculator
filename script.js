@@ -28,25 +28,29 @@ function divide(){
     }
     else{
         res=a/b;
-        display.textContent= res;
-        history.textContent= a + " " + operator + " " + b;
+        writeRes();
     }
 }
 
 function add(){
     res =a+b;
-    display.textContent= res;
-    history.textContent= a + " " + operator + " " + b;
+    writeRes();
 }
 
 function multiply(){
     res = a*b;
-    display.textContent= res;
-    history.textContent= a + " " + operator + " " + b;
+    writeRes();
 }
 
 function subtract(){
     res = a-b;
+    writeRes();
+}
+
+function writeRes(){
+    if(String(res).length > 13){
+        res = Number(String(res).substring(1, 13));
+    }
     display.textContent= res;
     history.textContent= a + " " + operator + " " + b;
 }
@@ -65,20 +69,16 @@ function myFunction() {
                 b = Number(display.textContent);
                 
                 switch (operator){
-                    case "divide":
-                        operator = "÷";
+                    case "÷":
                         divide();
                         break;
-                    case "multiply":
-                        operator = "×";
+                    case "×":
                         multiply();
                         break;
-                    case "add":
-                        operator = "+";
+                    case "+":
                         add();
                         break;
-                    case "subtract":
-                        operator = "-";
+                    case "-":
                         subtract();
                         break;
                     case "C":
@@ -99,7 +99,7 @@ function myFunction() {
                 operator=value;
                 res=null;
                 display.textContent="0";
-                history.textContent="0";
+                history.textContent= a + " " + operator;
             }
             else {
                 if(value != "CE" && value != "C"){ // do not replace operator if the operation selected is clearing
@@ -107,6 +107,7 @@ function myFunction() {
                     a= Number(display.textContent); // save first operand
                 }
                 display.textContent= "0";
+                history.textContent= a + " " + operator;
             }
         }   
     }
@@ -165,12 +166,13 @@ function mykeyboardFunc(){
                 operator=value;
                 res=null;
                 display.textContent="0";
-                history.textContent="0";
+                history.textContent= a + " " + operator;
             }
             else{
                 operator = value; // save the operation
                 a= Number(display.textContent); // save first operand
                 display.textContent= "0";
+                history.textContent= a + " " + operator;
             }
         }   
     }
