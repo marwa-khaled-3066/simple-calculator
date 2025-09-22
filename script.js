@@ -48,8 +48,8 @@ function subtract(){
 }
 
 function writeRes(){
-    if(String(res).length > 13){
-        res = Number(String(res).substring(1, 13));
+    if(String(res).length > 12){
+        res = Number(String(res).substring(1, 11));
     }
     display.textContent= res;
     history.textContent= a + " " + operator + " " + b;
@@ -96,10 +96,17 @@ function myFunction() {
             if (res!=null){
                 a=res;
                 b=null;
-                operator=value;
+                if(value != "CE" && value != "C"){
+                    operator = value; // save the operation if it is not a clear
+                }
                 res=null;
                 display.textContent="0";
-                history.textContent= a + " " + operator;
+                if(value != "C"){
+                    history.textContent= a + " " + operator;
+                }
+                else{
+                    history.textContent= "0";
+                }
             }
             else {
                 if(value != "CE" && value != "C"){ // do not replace operator if the operation selected is clearing
@@ -163,7 +170,9 @@ function mykeyboardFunc(){
             if (res!=null){
                 a=res;
                 b=null;
-                operator=value;
+                if(value != "CE" && value != "C"){
+                    operator = value; // save the operation if it is not a clear
+                }
                 res=null;
                 display.textContent="0";
                 history.textContent= a + " " + operator;
