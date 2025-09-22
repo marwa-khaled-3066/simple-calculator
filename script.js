@@ -93,7 +93,6 @@ function myFunction() {
             }
         }
         else{ // operation added, need 2nd operand
-
             if (res!=null){
                 a=res;
                 b=null;
@@ -160,9 +159,19 @@ function mykeyboardFunc(){
             }
         }
         else{ // operation added, need 2nd operand
-            operator = value; // save the operation
-            a= Number(display.textContent); // save first operand
-            display.textContent= "0";
+            if (res!=null){
+                a=res;
+                b=null;
+                operator=value;
+                res=null;
+                display.textContent="0";
+                history.textContent="0";
+            }
+            else{
+                operator = value; // save the operation
+                a= Number(display.textContent); // save first operand
+                display.textContent= "0";
+            }
         }   
     }
     else{ //numbers and decmial
