@@ -78,11 +78,8 @@ button:active{
   background: #6EACDA;
 }
 
-@media only screen and (max-width: 800px){
-  .calculator-body{
-    width:100%;
-  }
-  .calculator-btns{
-    width: auto;
+@media screen and (max-width: 800px){
+  .calculator-body, .calculator-btns, .calculator-d{
+    width: 50%;
   }
 }

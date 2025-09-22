@@ -8,20 +8,56 @@ var operator = null;
 var b = null;
 var res = null;
 
+function clear(op){
+    if (op=="C"){
+        display.textContent= "0";
+        history.textContent= "0";
+        a= 0;
+        operator = null;
+        b= null;
+    }
+    else{ // CE
+        display.textContent= "0";
+        b= null;
+    }
+}
+
+function divide(){
+    if(b==0){
+        alert("Divide by zero error!");
+    }
+    else{
+        res=a/b;
+        display.textContent= res;
+        history.textContent= a + " " + operator + " " + b;
+    }
+}
+
+function add(){
+    res =a+b;
+    display.textContent= res;
+    history.textContent= a + " " + operator + " " + b;
+}
+
+function multiply(){
+    res = a*b;
+    display.textContent= res;
+    history.textContent= a + " " + operator + " " + b;
+}
+
+function subtract(){
+    res = a-b;
+    display.textContent= res;
+    history.textContent= a + " " + operator + " " + b;
+}
+
 //listen for key clicks
 buttons.addEventListener("click", myFunction);
 function myFunction() {
     // determine pressed key's type
     const key = event.target;
     value= key.getAttribute("id");
-    if (res!=null){
-        a=0;
-        b=null;
-        operator=null;
-        res=null;
-        display.textContent="0";
-        history.textContent="0";
-    }
+
     if(key.getAttribute("class")){ // check if the button pressed is an operator + / - *
         // assign type of operator action
         if (value=="equals"){ // calculation requested
@@ -57,11 +93,22 @@ function myFunction() {
             }
         }
         else{ // operation added, need 2nd operand
-            if(value != "CE" && value != "C"){ // do not replace operator if the operation selected is clearing
-                operator = value; // save the operation if it is not a clear
-                a= Number(display.textContent); // save first operand
+
+            if (res!=null){
+                a=res;
+                b=null;
+                operator=value;
+                res=null;
+                display.textContent="0";
+                history.textContent="0";
             }
-            display.textContent= "0";
+            else {
+                if(value != "CE" && value != "C"){ // do not replace operator if the operation selected is clearing
+                    operator = value; // save the operation if it is not a clear
+                    a= Number(display.textContent); // save first operand
+                }
+                display.textContent= "0";
+            }
         }   
     }
     else{ //numbers and decmial
@@ -135,48 +182,4 @@ function mykeyboardFunc(){
             }
         }
     }
-}
-
-
-function clear(op){
-    if (op=="C"){
-        display.textContent= "0";
-        history.textContent= "0";
-        a= 0;
-        operator = null;
-        b= null;
-    }
-    else{ // CE
-        display.textContent= "0";
-        b= null;
-    }
-}
-
-function divide(){
-    if(b==0){
-        alert("Divide by zero error!");
-    }
-    else{
-        res=a/b;
-        display.textContent= res;
-        history.textContent= a + " " + operator + " " + b;
-    }
-}
-
-function add(){
-    res =a+b;
-    display.textContent= res;
-    history.textContent= a + " " + operator + " " + b;
-}
-
-function multiply(){
-    res = a*b;
-    display.textContent= res;
-    history.textContent= a + " " + operator + " " + b;
-}
-
-function subtract(){
-    res = a-b;
-    display.textContent= res;
-    history.textContent= a + " " + operator + " " + b;
 }
