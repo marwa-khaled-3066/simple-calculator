@@ -99,7 +99,6 @@ function myFunction() {
                 }
             }
             else { //obtain 2nd operand
-                console.log(res);
                 if(value !== "CE" && value !== "C"){ // do not replace operator if the operation selected is clearing
                     operator = value; // save the operation if it is not a clear
                     a= Number(display.textContent); // save first operand
@@ -115,7 +114,7 @@ function myFunction() {
     else{ //numbers and decmial
         if(value == "decimal"){
             if (display.textContent != "" && !display.textContent.includes(".")){
-                // value= ".";
+                value= ".";
                 display.textContent+=value;
             }
         }
@@ -136,7 +135,6 @@ var ops = ["*","-","+","/", "Enter"];
 document.addEventListener("keypress", mykeyboardFunc);
 function mykeyboardFunc(){
     let value = event.key;
-    console.log(value);
     if(ops.includes(value)){ // check if the button pressed is an operator + / - *
         // assign type of operator action
         if (value ==="Enter"){ // calculation requested
@@ -161,17 +159,15 @@ function mykeyboardFunc(){
             }
         }
         else{ // operation added, need 2nd operand
-            if (res!=null){
+            if (res!=null){ // check if continuing onto previous result
                 a=res;
                 b=null;
-                if(value != "CE" && value != "C"){
-                    operator = value; // save the operation if it is not a clear
-                }
                 res=null;
+                operator = value; // save the operation if it is not a clear
                 display.textContent="0";
                 history.textContent= a + " " + operator;
             }
-            else{
+            else{ // save 2nd operand
                 operator = value; // save the operation
                 a= Number(display.textContent); // save first operand
                 display.textContent= "0";
