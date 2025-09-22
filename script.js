@@ -61,13 +61,11 @@ function myFunction() {
     // determine pressed key's type
     const key = event.target;
     value= key.getAttribute("id");
-
     if(key.getAttribute("class")){ // check if the button pressed is an operator + / - *
         // assign type of operator action
         if (value=="equals"){ // calculation requested
             if (a != null){
                 b = Number(display.textContent);
-                
                 switch (operator){
                     case "÷":
                         divide();
@@ -81,47 +79,43 @@ function myFunction() {
                     case "-":
                         subtract();
                         break;
-                    case "C":
-                        clear(value);
-                        break;
-                    case "CE":
-                        clear(value);
-                        break;
                     default:
                         break;
                 }
             }
         }
         else{ // operation added, need 2nd operand
-            if (res!=null){
+            if (res!==null){ // check if continuing onto previous result
                 a=res;
                 b=null;
-                if(value != "CE" && value != "C"){
-                    operator = value; // save the operation if it is not a clear
-                }
                 res=null;
-                display.textContent="0";
-                if(value != "C"){
+                if(value !== "CE" && value !== "C"){
+                    operator = value; // save the operation if it is not a clear
+                    display.textContent="0";
                     history.textContent= a + " " + operator;
                 }
                 else{
-                    history.textContent= "0";
+                    clear(value);
                 }
             }
-            else {
-                if(value != "CE" && value != "C"){ // do not replace operator if the operation selected is clearing
+            else { //obtain 2nd operand
+                console.log(res);
+                if(value !== "CE" && value !== "C"){ // do not replace operator if the operation selected is clearing
                     operator = value; // save the operation if it is not a clear
                     a= Number(display.textContent); // save first operand
+                    display.textContent= "0";
+                    history.textContent= a + " " + operator;
                 }
-                display.textContent= "0";
-                history.textContent= a + " " + operator;
+                else{
+                    clear(value);
+                }
             }
         }   
     }
     else{ //numbers and decmial
         if(value == "decimal"){
             if (display.textContent != "" && !display.textContent.includes(".")){
-                value= ".";
+                // value= ".";
                 display.textContent+=value;
             }
         }
